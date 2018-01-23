@@ -9,8 +9,11 @@ before_deploy:
 - ./scripts/build.sh
 deploy:
   provider: releases
+  skip_cleanup: true
   api_key:
     secure: z6aMc2Zt0NraaPLoNezLsEiSoMbjEMyetdi76pRjr6cZFpEGij7X+0Z+BIosjZw43x15+2iNeWfH8fawtj1IQSiReR+3yff2ac1QTfp1nMLnUMpuCFD9ra/MVcliYAUKopBASqXHgX2SmFqp7S+si+1eXnm6k3DIBNSAKUSA/cid0+bNJkFA3D0R94o15pFbXoC90xXxeyO7s74djHUO4B0x+9nU+bjxpJNpKaSH2XvfKeqhjhcnbjpZniKpW9Lu4tMGLW4sbfuWTg2w4pcGl8asJ0E3YxZu4DS5rgZLsKqSlzvinN/aJQLAu+jOKD0B8s5kiorzNv0Fln3y7SHb0HjuP2QwftiX0wg14nqtLXRX+jx1SujP/310r88cdbNDxQllq1qKaVjJLboRqV+bCeTdih88GKOJXtSPxVcqfJdSCcPK52zWDY66qplx7rvN7bfkOzKA3fgYu6x9CjHvsputn8Wo5Tgex0LDRfsTOHPRBTiiIbciNo2cZGtOcVSUQV/EekgaXKFgEP5c4jFMDi6l0chthRvUYPEaBjvENoVUKH9oyIt5glmTBB8CGWGz//WBmBE6xXsoJS7hM87JvOODO0ypfIL2d7zNphXaC4nNdMQxyU5Qv6MQxVIHeEzYLgiNZe07SYd84a3PqWG5rGGfHh+vOjWPi8KkHvgY7ak=
+  file_glob: true
   file: pkg/*.zip
   on:
-    repo: kterada0509/terraform-provider-treasuredata
+    all_branches: true
+    tags: true
