@@ -42,6 +42,10 @@ func resourceTreasuredataDatabase() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"delete_protected": &schema.Schema{
+				Type:     schema.TypeBool,
+				Computed: true,
+			},
 		},
 	}
 }
@@ -65,6 +69,7 @@ func resourceTreasuredataDatabaseRead(d *schema.ResourceData, meta interface{}) 
 			d.Set("created_at", database.CreatedAt.Format(time.RFC3339))
 			d.Set("updated_at", database.UpdatedAt.Format(time.RFC3339))
 			d.Set("permission", database.Permission)
+			d.Set("delete_protected", database.DeleteProtected)
 
 			return nil
 		}
