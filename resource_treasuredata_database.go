@@ -17,18 +17,10 @@ func resourceTreasuredataDatabase() *schema.Resource {
 			State: schema.ImportStatePassthrough,
 		},
 		Schema: map[string]*schema.Schema{
-			"id": &schema.Schema{
-				Type:     schema.TypeString,
-				Computed: true,
-			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
 				ForceNew: true,
 				Required: true,
-			},
-			"count": &schema.Schema{
-				Type:     schema.TypeInt,
-				Computed: true,
 			},
 			"created_at": &schema.Schema{
 				Type:     schema.TypeString,
