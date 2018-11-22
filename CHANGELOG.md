@@ -1,3 +1,10 @@
+## 0.0.5
+
+INTERNAL:
+
+* Import update [td-client-go](https://github.com/treasure-data/td-client-go)
+* Change method `ShowDatabase` -> `ShowDatabase`
+
 ## 0.0.4 
 
 FEATUREs: 
