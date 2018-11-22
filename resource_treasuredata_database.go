@@ -1,6 +1,7 @@
 package treasuredata
 
 import (
+	"fmt"
 	"log"
 	"time"
 
@@ -45,27 +46,27 @@ func resourceTreasuredataDatabase() *schema.Resource {
 func resourceTreasuredataDatabaseRead(d *schema.ResourceData, meta interface{}) error {
 	client := meta.(*td_client.TDClient)
 
-	resp, err := client.ListDatabases()
+	log.Printf("[DEBUG] Reading treasuredata database: %s", d.Id())
+	if _, ok := d.GetOk("name"); !ok {
+		d.Set("name", d.Id())
+	}
+
+	databaseElement, err := client.ShowDatabase(d.Id())
 	if err != nil {
-		return err
-	}
-	if len(*resp) == 0 {
-		d.SetId("")
-		return nil
-	}
-
-	for _, database := range *resp {
-		if database.Name == d.Id() {
-			d.Set("name", database.Name)
-			d.Set("count", database.Count)
-			d.Set("created_at", database.CreatedAt.Format(time.RFC3339))
-			d.Set("updated_at", database.UpdatedAt.Format(time.RFC3339))
-			d.Set("permission", database.Permission)
-			d.Set("delete_protected", database.DeleteProtected)
-
+		if err == fmt.Errorf("Database '%s' does not exist", d.Id()) {
+			log.Printf("[WARN] Database (%s) does not exist", d.Id())
+			d.SetId("")
 			return nil
 		}
+		return err
 	}
+
+	d.Set("count", databaseElement.Count)
+	d.Set("created_at", databaseElement.CreatedAt.Format(time.RFC3339))
+	d.Set("updated_at", databaseElement.UpdatedAt.Format(time.RFC3339))
+	d.Set("permission", databaseElement.Permission)
+	d.Set("delete_protected", databaseElement.DeleteProtected)
+
 	return nil
 }
 
