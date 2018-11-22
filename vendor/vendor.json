@@ -729,10 +729,10 @@
 			"revisionTime": "2018-01-03T17:44:51Z"
 		},
 		{
-			"checksumSHA1": "uHORuvG6Yk4IVbgP0V+LDKUM62s=",
+			"checksumSHA1": "1YgZqedhOV2mR/Y0m9uZZ7F8a9c=",
 			"path": "github.com/treasure-data/td-client-go",
-			"revision": "65ec01c4146aca2422280632366e8afe1ab309a9",
-			"revisionTime": "2018-04-07T14:59:04Z"
+			"revision": "82bb27331c77c06f47bf928ae1683aa9347f0b16",
+			"revisionTime": "2018-11-21T07:03:45Z"
 		},
 		{
 			"checksumSHA1": "qWuVUSa6NZw5XVLWCGcxl3+3D68=",
