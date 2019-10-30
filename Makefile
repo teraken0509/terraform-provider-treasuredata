@@ -21,8 +21,8 @@ testacc: vet
 	TF_ACC=1 go test $(TEST) -v $(TESTARGS) -timeout 120m
 
 vet: fmt
-	@echo "go tool vet $(VETARGS) ."
-	@go tool vet $(VETARGS) $(GOVET_FILES) ; if [ $$? -eq 1 ]; then \
+	@echo "go vet $(VETARGS) ."
+	@go vet $(VETARGS) $(GOVET_FILES) ; if [ $$? -eq 1 ]; then \
 		echo ""; \
 		echo "Vet found suspicious constructs. Please check the reported constructs"; \
 		echo "and fix them if necessary before submitting the code for review."; \
