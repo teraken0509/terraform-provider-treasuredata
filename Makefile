@@ -1,7 +1,6 @@
 TEST?=$$(go list ./... | grep -v '/vendor/')
 VETARGS?=
 GOFMT_FILES?=$$(find . -name '*.go' | grep -v vendor)
-GOVET_FILES?=$$(find . -name '*.go' | grep -v vendor)
 
 default: test vet
 
@@ -21,13 +20,15 @@ testacc: vet
 	TF_ACC=1 go test $(TEST) -v $(TESTARGS) -timeout 120m
 
 vet: fmt
-	@echo "go tool vet $(VETARGS) ."
-	@go tool vet $(VETARGS) $(GOVET_FILES) ; if [ $$? -eq 1 ]; then \
-		echo ""; \
-		echo "Vet found suspicious constructs. Please check the reported constructs"; \
-		echo "and fix them if necessary before submitting the code for review."; \
-		exit 1; \
-	fi
+	@for target in "." "./builtin/..."; do \
+		echo "go vet $(VETARGS) $$target"; \
+		go vet $(VETARGS) $$target ; if [ $$? -eq 1 ]; then \
+			echo ""; \
+			echo "Vet found suspicious constructs. Please check the reported constructs"; \
+			echo "and fix them if necessary before submitting the code for review."; \
+			exit 1; \
+		fi \
+	done
 
 fmt:
 	gofmt -w $(GOFMT_FILES)
