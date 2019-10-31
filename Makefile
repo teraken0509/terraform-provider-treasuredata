@@ -3,9 +3,6 @@ VETARGS?=
 
 default: test vet
 
-tools:
-	go get -u github.com/kardianos/govendor
-
 clean:
 	rm -Rf $(CURDIR)/bin/*
 
