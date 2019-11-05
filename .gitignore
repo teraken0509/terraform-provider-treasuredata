@@ -30,3 +30,6 @@ _testmain.go
 
 bin/
 pkg/
+
+# For go modules
+vendor/
