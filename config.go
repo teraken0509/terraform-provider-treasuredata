@@ -11,6 +11,7 @@ type Config struct {
 func (c *Config) NewClient() (*tdClient.TDClient, error) {
 	client, err := tdClient.NewTDClient(tdClient.Settings{
 		ApiKey:    c.APIKey,
+		Ssl:       true,
 		UserAgent: "Terraform for Treasure Data",
 	})
 	if err != nil {
