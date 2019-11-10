@@ -3,7 +3,8 @@ package treasuredata
 import (
 	"log"
 
-	"github.com/hashicorp/terraform/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+
 	td_client "github.com/treasure-data/td-client-go"
 )
 
@@ -17,53 +18,53 @@ func resourceTreasuredataSchedule() *schema.Resource {
 			State: schema.ImportStatePassthrough,
 		},
 		Schema: map[string]*schema.Schema{
-			"name": &schema.Schema{
+			"name": {
 				Type:     schema.TypeString,
 				ForceNew: true,
 				Required: true,
 			},
-			"cron": &schema.Schema{
+			"cron": {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
-			"query": &schema.Schema{
+			"query": {
 				Type:     schema.TypeString,
 				Required: true,
 			},
-			"timezone": &schema.Schema{
+			"timezone": {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
-			"delay": &schema.Schema{
+			"delay": {
 				Type:     schema.TypeInt,
 				Optional: true,
 			},
-			"database": &schema.Schema{
+			"database": {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
-			"user_name": &schema.Schema{
+			"user_name": {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
-			"priority": &schema.Schema{
+			"priority": {
 				Type:     schema.TypeInt,
 				Optional: true,
 				Default:  0,
 			},
-			"retry_limit": &schema.Schema{
+			"retry_limit": {
 				Type:     schema.TypeInt,
 				Optional: true,
 			},
-			"result": &schema.Schema{
+			"result": {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
-			"next_time": &schema.Schema{
+			"next_time": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"created_at": &schema.Schema{
+			"created_at": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
