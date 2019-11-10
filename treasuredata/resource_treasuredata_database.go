@@ -5,7 +5,8 @@ import (
 	"log"
 	"time"
 
-	"github.com/hashicorp/terraform/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+
 	td_client "github.com/treasure-data/td-client-go"
 )
 
@@ -18,24 +19,24 @@ func resourceTreasuredataDatabase() *schema.Resource {
 			State: schema.ImportStatePassthrough,
 		},
 		Schema: map[string]*schema.Schema{
-			"name": &schema.Schema{
+			"name": {
 				Type:     schema.TypeString,
 				ForceNew: true,
 				Required: true,
 			},
-			"created_at": &schema.Schema{
+			"created_at": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"updated_at": &schema.Schema{
+			"updated_at": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"permission": &schema.Schema{
+			"permission": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"delete_protected": &schema.Schema{
+			"delete_protected": {
 				Type:     schema.TypeBool,
 				Computed: true,
 			},

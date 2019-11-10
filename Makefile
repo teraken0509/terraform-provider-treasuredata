@@ -1,4 +1,6 @@
 TEST?=$$(go list ./...)
+GOFMT_FILES?=$$(find . -name '*.go' |grep -v vendor)
+PKG_NAME=treasuredata
 VETARGS?=
 
 default: test vet
@@ -7,7 +9,7 @@ clean:
 	rm -Rf $(CURDIR)/bin/*
 
 build: clean vet
-	GO111MODULE=on go build -o $(CURDIR)/bin/terraform-provider-treasuredata $(CURDIR)/builtin/bins/provider-treasuredata/main.go
+	go install
 
 test: vet
 	GO111MODULE=on TF_ACC= go test $(TEST) $(TESTARGS) -timeout=30s -parallel=4
@@ -25,7 +27,7 @@ vet: fmt
 	fi
 
 fmt:
-	gofmt -w .
-
+	@echo "==> Fixing source code with gofmt..."
+	gofmt -s -w ./$(PKG_NAME)
 
 .PHONY: default test vet fmt
